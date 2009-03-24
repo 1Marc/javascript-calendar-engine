@@ -1,0 +1,117 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Calendar Engine - Draw Date Formats</title>
+		<script src="calendar.engine.js" type="text/javascript" charset="utf-8"></script>
+		<script src="calendars/calendar.persion.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" charset="utf-8">
+		function w(heading, content) {
+			document.getElementById('print').innerHTML += "<tr>"
+				+ "<th>" + heading + "</th>"
+				+ "<td>" + content + "</td>"
+			+ "</tr>";
+		}
+		window.onload = function(){
+			
+			var date = new DateEngine(2008, 1, 1, 1, 1, 1, "Persion");
+			w("to-String", date.toString());
+			w("getDate", date.getDate());
+			w("getDay", date.getDay());
+			w("getDayName", date.getDayName());
+			w("getDayName(true) [Long]", date.getDayName(true));
+			w("getDayOfYear", date.getDayOfYear());
+			w("getFullYear", date.getFullYear());
+			w("getHours", date.getHours());
+			w("getMinutes", date.getMinutes());
+			w("getMonth", date.getMonth());
+			w("getMonthLength", date.getMonthLength());
+			w("getMonthName", date.getMonthName());
+			w("getMonthName(true) [Long]", date.getMonthName(true));
+			w("getSeconds", date.getSeconds());
+			w("getTime", date.getTime());
+			w("getTwoDigitYear", date.getTwoDigitYear());
+			w("getYear", date.getYear());
+			w("getYearName", date.getYearName());
+			w("isLeapYear", date.isLeapYear());
+			w("valueOf", date.valueOf());
+			
+			w("----", "----");
+			
+			var date = new DateEngine(2008, 1, 1, 1, 1, 1);
+			w("to-String", date.toString());
+			w("getDate", date.getDate());
+			w("getDay", date.getDay());
+			w("getDayName", date.getDayName());
+			w("getDayName(true) [Long]", date.getDayName(true));
+			w("getDayOfYear", date.getDayOfYear());
+			w("getFullYear", date.getFullYear());
+			w("getHours", date.getHours());
+			w("getMinutes", date.getMinutes());
+			w("getMonth", date.getMonth());
+			w("getMonthLength", date.getMonthLength());
+			w("getMonthName", date.getMonthName());
+			w("getMonthName(true) [Long]", date.getMonthName(true));
+			w("getSeconds", date.getSeconds());
+			w("getTime", date.getTime());
+			w("getTwoDigitYear", date.getTwoDigitYear());
+			w("getYear", date.getYear());
+			w("getYearName", date.getYearName());
+			w("isLeapYear", date.isLeapYear());
+			w("valueOf", date.valueOf());
+			
+			w("----", "----");
+			
+			var date = new DateEngine();
+			w("to-String", date.toString());
+			w("getDate", date.getDate());
+			w("getDay", date.getDay());
+			w("getDayName", date.getDayName());
+			w("getDayName(true) [Long]", date.getDayName(true));
+			w("getDayOfYear", date.getDayOfYear());
+			w("getFullYear", date.getFullYear());
+			w("getHours", date.getHours());
+			w("getMinutes", date.getMinutes());
+			w("getMonth", date.getMonth());
+			w("getMonthLength", date.getMonthLength());
+			w("getMonthName", date.getMonthName());
+			w("getMonthName(true) [Long]", date.getMonthName(true));
+			w("getSeconds", date.getSeconds());
+			w("getTime", date.getTime());
+			w("getTwoDigitYear", date.getTwoDigitYear());
+			w("getYear", date.getYear());
+			w("getYearName", date.getYearName());
+			w("isLeapYear", date.isLeapYear());
+			w("valueOf", date.valueOf());
+			
+			w("----", "----");
+			
+			var date = new DateEngine();
+			date.changeCalendar("Persion");
+			w("to-String", date.toString());
+			w("getDate", date.getDate());
+			w("getDay", date.getDay());
+			w("getDayName", date.getDayName());
+			w("getDayName(true) [Long]", date.getDayName(true));
+			w("getDayOfYear", date.getDayOfYear());
+			w("getFullYear", date.getFullYear());
+			w("getHours", date.getHours());
+			w("getMinutes", date.getMinutes());
+			w("getMonth", date.getMonth());
+			w("getMonthLength", date.getMonthLength());
+			w("getMonthName", date.getMonthName());
+			w("getMonthName(true) [Long]", date.getMonthName(true));
+			w("getSeconds", date.getSeconds());
+			w("getTime", date.getTime());
+			w("getTwoDigitYear", date.getTwoDigitYear());
+			w("getYear", date.getYear());
+			w("getYearName", date.getYearName());
+			w("isLeapYear", date.isLeapYear());
+			w("valueOf", date.valueOf());
+
+		}
+		</script>
+	</head>
+	<body>
+		<table id="print"></table>
+	</body>
+</html>
