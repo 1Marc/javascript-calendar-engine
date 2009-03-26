@@ -121,9 +121,9 @@ CalendarEngine.extendCalendar("Persion", // inherit defaults from Gregorion cale
 	    if ((months < -120000) || (months > 120000)) {
 	        alert("Invalid month"); return null;
 	    };
-	    var num1 = parseInt(this.GetDatePart(fixGetTime(datetime), 0));
-	    var num2 = parseInt(this.GetDatePart(fixGetTime(datetime), 2));
-	    var num3 = parseInt(this.GetDatePart(fixGetTime(datetime), 3));
+	    var num1 = parseInt(this.GetDatePart(CalendarEngine.fixGetTime(datetime), 0));
+	    var num2 = parseInt(this.GetDatePart(CalendarEngine.fixGetTime(datetime), 2));
+	    var num3 = parseInt(this.GetDatePart(CalendarEngine.fixGetTime(datetime), 3));
 	    var num4 = parseInt(((num2 - 1) + months));
 	    if (num4 >= 0) {
 	        num2 = ((num4 % 12) + 1);
@@ -136,7 +136,7 @@ CalendarEngine.extendCalendar("Persion", // inherit defaults from Gregorion cale
 	    if (num3 > num5) {
 	        num3 = num5;
 	    }
-	    var num6 = parseFloat((this.GetAbsoluteDatePersian(num1, num2, num3) * 86400000) + (fixGetTime(datetime) % 86400000));
+	    var num6 = parseFloat((this.GetAbsoluteDatePersian(num1, num2, num3) * 86400000) + (CalendarEngine.fixGetTime(datetime) % 86400000));
 	    var rValue = new Date();
 	    rValue.setTime(num6);
 	    return rValue;
