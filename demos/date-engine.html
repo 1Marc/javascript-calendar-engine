@@ -1,0 +1,94 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Calendar Engine - Draw Date Formats</title>
+		<script src="../source/calendar.engine.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../i18n/calendar.persion.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../source/date.engine.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" charset="utf-8">
+		function w(heading, content) {
+			document.getElementById('print').innerHTML += "<tr>"
+				+ "<th>" + heading + "</th>"
+				+ "<td>" + content + "</td>"
+			+ "</tr>";
+		}
+		window.onload = function(){
+			
+			var date = new DateEngine(2008, 1, 1, 1, 1, 1, "Persion");
+			var date2 = new DateEngine();
+			
+			w("to-String", date.toString());
+			w("getDate", date.getDate());
+			w("getDay", date.getDay());
+			w("getDayName", date.getDayName());
+			w("getDayName(true) [Long]", date.getDayName(true));
+			w("getDayOfYear", date.getDayOfYear());
+			w("getFullYear", date.getFullYear());
+			w("getHours", date.getHours());
+			w("getMinutes", date.getMinutes());
+			w("getMonth", date.getMonth());
+			w("getMonthLength", date.getMonthLength());
+			w("getMonthName", date.getMonthName());
+			w("getMonthName(true) [Long]", date.getMonthName(true));
+			w("getSeconds", date.getSeconds());
+			w("getTime", date.getTime());
+			w("getTwoDigitYear", date.getTwoDigitYear());
+			w("getYear", date.getYear());
+			w("getYearName", date.getYearName());
+			w("isLeapYear", date.isLeapYear());
+			w("valueOf", date.valueOf());
+			
+			w("----", "----");
+			
+			w("to-String", date2.toString());
+			w("getDate", date2.getDate());
+			w("getDay", date2.getDay());
+			w("getDayName", date2.getDayName());
+			w("getDayName(true) [Long]", date2.getDayName(true));
+			w("getDayOfYear", date2.getDayOfYear());
+			w("getFullYear", date2.getFullYear());
+			w("getHours", date2.getHours());
+			w("getMinutes", date2.getMinutes());
+			w("getMonth", date2.getMonth());
+			w("getMonthLength", date2.getMonthLength());
+			w("getMonthName", date2.getMonthName());
+			w("getMonthName(true) [Long]", date2.getMonthName(true));
+			w("getSeconds", date2.getSeconds());
+			w("getTime", date2.getTime());
+			w("getTwoDigitYear", date2.getTwoDigitYear());
+			w("getYear", date2.getYear());
+			w("getYearName", date2.getYearName());
+			w("isLeapYear", date2.isLeapYear());
+			w("valueOf", date2.valueOf());
+			
+			w("----", "----");
+			
+			date2.changeCalendar("Persion")
+			w("to-String", date2.toString());
+			w("getDate", date2.getDate());
+			w("getDay", date2.getDay());
+			w("getDayName", date2.getDayName());
+			w("getDayName(true) [Long]", date2.getDayName(true));
+			w("getDayOfYear", date2.getDayOfYear());
+			w("getFullYear", date2.getFullYear());
+			w("getHours", date2.getHours());
+			w("getMinutes", date2.getMinutes());
+			w("getMonth", date2.getMonth());
+			w("getMonthLength", date2.getMonthLength());
+			w("getMonthName", date2.getMonthName());
+			w("getMonthName(true) [Long]", date2.getMonthName(true));
+			w("getSeconds", date2.getSeconds());
+			w("getTime", date2.getTime());
+			w("getTwoDigitYear", date2.getTwoDigitYear());
+			w("getYear", date2.getYear());
+			w("getYearName", date2.getYearName());
+			w("isLeapYear", date2.isLeapYear());
+			w("valueOf", date2.valueOf());
+			
+		}
+		</script>
+	</head>
+	<body>
+		<table id="print"></table>
+	</body>
+</html>

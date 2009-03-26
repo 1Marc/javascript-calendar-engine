@@ -3,7 +3,7 @@
  * Copyright 2009, Marc Grabanski (m@marcgrabanski.com) http://marcgrabanski.com
  * Released under the MIT License
  * Co-Author: Mahdi Yousefi (mahdi@tini.ir)
- * Dependancies: Calendar Engine
+ * Dependancies: CalendarEngine
  */
 
 (function(){ // hide what's inside
@@ -89,8 +89,8 @@ var DateObject = function(){
 		},
 		calendar: function() { return this.vars.cal; },
 		changeCalendar: function(type) {
-		    this.vars.cal = Calendars[type];
-			this.setDate(this.date)
+		    this.vars.cal = CalendarEngine.getCalendar(type);
+			this.setDate(this.date);
 		},
 		twodigit: function(iNumber) {
 	        if (iNumber.toString().length < 2) {
