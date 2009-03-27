@@ -5,7 +5,7 @@
  */
 
 /*---------------------- Persian Calendar (solar) or (Hijri shamsi) -----------------------*/
-CalendarEngine.extendCalendar("Persion", // inherit defaults from Gregorion calendar constructor
+CalendarEngine.extendCalendar("Persian", // inherit defaults from Gregorion calendar constructor
 { // extend with new methods and properties
 	info: { "name":"Persian", "version":"1.0" },
 	strings: {
