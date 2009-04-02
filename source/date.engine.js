@@ -87,8 +87,18 @@ var DateObject = function(){
 		    var date = this.vars.cal.toDateTime(args.y, args.m, args.d, this.getHours(), this.getMinutes(), this.getSeconds(), 0);
 		    this.setDate(date);
 		},
+		adjustDate: function(offset, period){
+			switch(period){
+				case 'Y': 
+					this.setFullYear(this.getFullYear()+offset); break;
+				case 'M':
+					this.setFullYear(this.getFullYear(), this.getMonth()+offset); break;
+				case 'D':
+					this.setFullYear(this.getFullYear(), this.getMonth(), this.getDate()+offset); break;
+			}
+		},
 		calendar: function() { return this.vars.cal; },
-		changeCalendar: function(type) {
+		setCalendar: function(type) {
 		    this.vars.cal = CalendarEngine.getCalendar(type);
 			this.setDate(this.date);
 		},

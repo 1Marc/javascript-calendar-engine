@@ -3,15 +3,22 @@
 	<head>
 		<title>Calendar Engine - Draw Date Formats</title>
 		<script src="../source/calendar.engine.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../i18n/calendar.persian.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../source/date.engine.js" type="text/javascript" charset="utf-8"></script>
-		<script src="../source/render.engine.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../source/calendar.render.js" type="text/javascript" charset="utf-8"></script>
 	</head>
 	<body>
-		<table id="render"></table>
+		<div id="calendar"></div>
+		<div id="calendar-persian"></div>
 		<script type="text/javascript" charset="utf-8">
-			var target = document.getElementById('render');
-			var date = new DateEngine()
-			var calendar = new CalendarRender(target, date);
+			var calendarDiv = document.getElementById('calendar'); // get calendar div
+			var calendar = new CalendarRender(calendarDiv); // CalendarRender's target is calendarDiv
+			
+			var date = new DateEngine(); // use date engine instead of date object
+			date.setCalendar("Persian"); // set date object to use our Persion calendar extension
+			var calendarDiv = document.getElementById('calendar-persian'); // get calendar div
+			var calendar = new CalendarRender(calendarDiv); // CalendarRender's target is calendarDiv
+			calendar.setDate(date); // use our DateEngine object
 		</script>
 	</body>
 </html>
