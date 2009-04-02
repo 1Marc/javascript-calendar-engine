@@ -117,7 +117,7 @@ CalendarEngine.extendCalendar("Persian", // inherit defaults from Gregorion cale
 	    };
 	    return num1;
 	},
-	addMonths: function(DateTime, months) {
+	addMonths: function(datetime, months) {
 	    if ((months < -120000) || (months > 120000)) {
 	        alert("Invalid month"); return null;
 	    };

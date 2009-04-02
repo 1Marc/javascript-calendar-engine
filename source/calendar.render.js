@@ -11,10 +11,11 @@ var RenderObject = function(){
 	return {
 		date: new DateEngine(),
 		init: function(){
+			var self = this;
 			// testing adjustDate function
 			this.target.onclick = function(e){
-				this.date.adjustDate('M', +2);
-				this.refresh();
+				self.date.adjustDate('M', +2);
+				self.refresh();
 			}
 			this.draw();
 		},
@@ -23,12 +24,10 @@ var RenderObject = function(){
 		},
 		draw: function(){
 			// testing stuff
-			this.target.innerHTML = 
-				"<p>" + 
-					this.date.vars.cal.getDaysInMonth(this.date.getFullYear(), this.date.getMonth())
-					+ ", " + this.date.getMonthName(true)
-					+ ", " + this.date.getFullYear() 
-				+ "</p>";
+			var daysInMonth = this.date.vars.cal.getDaysInMonth(this.date.getFullYear(), this.date.getMonth());
+			var monthName = this.date.getMonthName();
+			var year = this.date.getFullYear();1
+			this.target.innerHTML = "<p>" + monthName + ", " + daysInMonth + ", " + year + "</p>";
 		}
 	};
 };
