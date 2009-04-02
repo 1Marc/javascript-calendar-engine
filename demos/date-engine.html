@@ -3,7 +3,7 @@
 	<head>
 		<title>Calendar Engine - Draw Date Formats</title>
 		<script src="../source/calendar.engine.js" type="text/javascript" charset="utf-8"></script>
-		<script src="../i18n/calendar.persion.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../i18n/calendar.persian.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../source/date.engine.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript" charset="utf-8">
 		function w(heading, content) {
@@ -14,7 +14,7 @@
 		}
 		window.onload = function(){
 			
-			var date = new DateEngine(2008, 1, 1, 1, 1, 1, "Persion");
+			var date = new DateEngine(2008, 1, 1, 1, 1, 1, "Persian");
 			var date2 = new DateEngine();
 			
 			w("to-String", date.toString());
@@ -63,7 +63,7 @@
 			
 			w("----", "----");
 			
-			date2.changeCalendar("Persion")
+			date2.changeCalendar("Persian")
 			w("to-String", date2.toString());
 			w("getDate", date2.getDate());
 			w("getDay", date2.getDay());

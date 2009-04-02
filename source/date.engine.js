@@ -131,17 +131,17 @@ var DateObject = function(){
 
 var DateEngine = function(year, month, day, hour, min, sec, calendar){ // date constructor
 	var dt = new Date();
-	var cal = calendar ? CalendarEngine.getCalendar(calendar) : CalendarEngine.getCalendar();
 	var o = new DateObject();
+	var engineCal = calendar ? CalendarEngine.getCalendar(calendar) : CalendarEngine.getCalendar();
 	o.date = dt;
 	o.vars = {
-		year: year || cal.getYear(dt),
-		month: month || cal.getMonth(dt),
-		day: day || cal.getDayOfMonth(dt),
+		year: year || engineCal.getYear(dt),
+		month: month || engineCal.getMonth(dt),
+		day: day || engineCal.getDayOfMonth(dt),
 		hour: hour || dt.getHours(),
 		minute: min || dt.getMinutes(),
 		second: sec || dt.getSeconds(),
-		cal: cal || Calendars.default
+		cal: engineCal
 	}
     o.datetime = o.vars.cal.toDateTime(o.vars.year, o.vars.month, o.vars.day, o.vars.hour, o.vars.minute, o.vars.second, 0);
     o.f = ['y{4}', 'y{3}', 'y{2}', 'M{4}', 'M{3}', 'M{2}', 'M{1}', 'd{4}', 'd{2}', 'd{1}', 'H{2}', 'H{1}', 'h{2}', 'h{1}', 'm{2}', 'm{1}', 's{2}', 's{1}', 'g{2}'];
