@@ -83,11 +83,10 @@ var DateObject = function(){
 		        m: month || this.vars.month,
 		        d: day || this.vars.day
 		    };
-		    this.validate();
 		    var date = this.vars.cal.toDateTime(args.y, args.m, args.d, this.getHours(), this.getMinutes(), this.getSeconds(), 0);
 		    this.setDate(date);
 		},
-		adjustDate: function(offset, period){
+		adjustDate: function(period, offset){
 			switch(period){
 				case 'Y': 
 					this.setFullYear(this.getFullYear()+offset); break;

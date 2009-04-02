@@ -11,23 +11,36 @@ var RenderObject = function(){
 	return {
 		date: new DateEngine(),
 		init: function(){
-			this.target.innerHTML = "<p>" + this.date.vars.cal.getDaysInMonth(this.date.getFullYear(), this.date.getMonth()) + "</p>";
-			this.target.innerHTML = "<p>" + this.date.vars.cal.getDaysInMonth(this.date.getFullYear(), this.date.getMonth()) + "</p>";
+			// testing adjustDate function
+			this.target.onclick = function(e){
+				this.date.adjustDate('M', +2);
+				this.refresh();
+			}
+			this.draw();
 		},
 		refresh: function(){
-			this.init();
+			this.draw();
+		},
+		draw: function(){
+			// testing stuff
+			this.target.innerHTML = 
+				"<p>" + 
+					this.date.vars.cal.getDaysInMonth(this.date.getFullYear(), this.date.getMonth())
+					+ ", " + this.date.getMonthName(true)
+					+ ", " + this.date.getFullYear() 
+				+ "</p>";
 		}
 	};
 };
 
 var CalendarRender = function(target){
-	var renderer = new RenderObject();
+	this.renderer = new RenderObject();
 	this.setDate = function(o){
-		renderer.date = o;
-		renderer.refresh();
+		this.renderer.date = o;
+		this.renderer.refresh();
 	}
-	renderer.target = target;
-	renderer.init();
+	this.renderer.target = target;
+	this.renderer.init();
 };
 
 window.CalendarRender = CalendarRender; //expose the CalendarRender object
