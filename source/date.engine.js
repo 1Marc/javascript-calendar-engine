@@ -11,11 +11,12 @@
 /*---------------  Calendar Engine Date Object  -------------------------- */
 var DateObject = function(){
 	return {
-		vars: { year: 0, month: 0, day: 0, hour: 0, minute: 0, second: 0, cal: "" },
+		date: new Date(),
+		vars: { year: 0, month: 0, day: 0, hour: 0, minute: 0, second: 0, cal: "default" },
 		setDate: function(date) {
-		    this.vars.year = this.vars.cal.getYear(date);
-		    this.vars.month = this.vars.cal.getMonth(date);
-		    this.vars.day = this.vars.cal.getDayOfMonth(date);
+		    this.vars.year = this.calendar().getYear(date);
+		    this.vars.month = this.calendar().getMonth(date);
+		    this.vars.day = this.calendar().getDayOfMonth(date);
 		    this.vars.hour = date.getHours();
 		    this.vars.minute = date.getMinutes();
 		    this.vars.second = date.getSeconds();
@@ -28,32 +29,32 @@ var DateObject = function(){
 		getMinutes: function() { return this.vars.minute; },
 		getSeconds: function() { return this.vars.second; },
 		getFullYear: function() { return this.getYear(); },
-		isLeapYear: function() { return this.vars.cal.isLeapYear(this.getYear()); },
+		isLeapYear: function() { return this.calendar().isLeapYear(this.getYear()); },
 		getTwoDigitYear: function() {
 		    var iYear = this.getYear();
 		    iYear = iYear + "";
 		    return iYear.substring((iYear.length - 2), iYear.length);
 		},
-		getDay: function() { return this.vars.cal.getDayOfWeek(this.date); },
+		getDay: function() { return this.calendar().getDayOfWeek(this.date); },
 		getDayName: function(LongFormat) {
 		    var index = this.getDay();
-		    return (LongFormat) ? this.vars.cal.strings.ldays[index] : this.vars.cal.strings.sdays[index];
+		    return (LongFormat) ? this.calendar().strings.ldays[index] : this.calendar().strings.sdays[index];
 		},
 		getYearName: function() {
-		    return this.vars.cal.strings.years[(this.getYear() % 12)];
+		    return this.calendar().strings.years[(this.getYear() % 12)];
 		},
 		getMonthName: function(LongFormat) {
 		    var index = this.getMonth() - 1;
-		    return (LongFormat) ? this.vars.cal.strings.lmonth[index] : this.vars.cal.strings.smonth[index];
+		    return (LongFormat) ? this.calendar().strings.lmonth[index] : this.calendar().strings.smonth[index];
 		},
 		getMonthLength: function() {
-		    return this.vars.cal.getDaysInMonth(this.getYear(), this.getMonth());
+		    return this.calendar().getDaysInMonth(this.getYear(), this.getMonth());
 		},
 		getTime: function() {
-		    return this.vars.cal.getTicks(this.getYear(), this.getMonth(), this.getDate(), this.getHours(), this.getMinutes(), this.getSeconds(), 0);
+		    return this.calendar().getTicks(this.getYear(), this.getMonth(), this.getDate(), this.getHours(), this.getMinutes(), this.getSeconds(), 0);
 		},
 		valueOf: function() { return this.getTime(); },
-		getDayOfYear: function() { return this.vars.cal.getDayOfYear(this.date); },
+		getDayOfYear: function() { return this.calendar().getDayOfYear(this.date); },
 		toString: function(format) {
 		    if (format) {
 		        var strValues = [
@@ -83,7 +84,7 @@ var DateObject = function(){
 		        m: month || this.vars.month,
 		        d: day || this.vars.day
 		    };
-		    var date = this.vars.cal.toDateTime(args.y, args.m, args.d, this.getHours(), this.getMinutes(), this.getSeconds(), 0);
+		    var date = this.calendar().toDateTime(args.y, args.m, args.d, this.getHours(), this.getMinutes(), this.getSeconds(), 0);
 		    this.setDate(date);
 		},
 		adjustDate: function(period, offset){
@@ -96,9 +97,9 @@ var DateObject = function(){
 					this.setFullYear(this.getFullYear(), this.getMonth(), this.getDate()+offset); break;
 			}
 		},
-		calendar: function() { return this.vars.cal; },
+		calendar: function() { return CalendarEngine.getCalendar(this.vars.cal); },
 		setCalendar: function(type) {
-		    this.vars.cal = CalendarEngine.getCalendar(type);
+			this.vars.cal = type;
 			this.setDate(this.date);
 		},
 		twodigit: function(iNumber) {
@@ -110,9 +111,9 @@ var DateObject = function(){
 	    },
 		daylight: function(longf) {
 	        if (this.vars.hour < 12) {
-	            return (longf) ? this.vars.cal.strings.dll[0] : this.vars.cal.strings.dls[0];
+	            return (longf) ? this.calendar().strings.dll[0] : this.calendar().strings.dls[0];
 	        } else {
-	            return (longf) ? this.vars.cal.strings.dll[1] : this.vars.cal.strings.dls[1];
+	            return (longf) ? this.calendar().strings.dll[1] : this.calendar().strings.dls[1];
 	        };
 	    },
 		hour12: function() {
@@ -120,9 +121,9 @@ var DateObject = function(){
 	            return 12;
 	        };
 	        if (this.vars.hour > 12) {
-	            return DE.vars.hour - 12;
+	            return this.vars.hour - 12;
 	        } else {
-	            return DE.vars.hour;
+	            return this.vars.hour;
 	        };
 	    },
 		checkTime: function(part, mode) {
@@ -138,21 +139,20 @@ var DateObject = function(){
 	} // end date object
 };
 
-var DateEngine = function(year, month, day, hour, min, sec, calendar){ // date constructor
-	var dt = new Date();
+var DateEngine = function(year, month, day, hour, min, sec, calendarType){ // date constructor
+	var type = calendarType ? calendarType : "default";
+	var cal = CalendarEngine.getCalendar(type);
 	var o = new DateObject();
-	var engineCal = calendar ? CalendarEngine.getCalendar(calendar) : CalendarEngine.getCalendar();
-	o.date = dt;
 	o.vars = {
-		year: year || engineCal.getYear(dt),
-		month: month || engineCal.getMonth(dt),
-		day: day || engineCal.getDayOfMonth(dt),
-		hour: hour || dt.getHours(),
-		minute: min || dt.getMinutes(),
-		second: sec || dt.getSeconds(),
-		cal: engineCal
+		year: year || cal.getYear(o.date),
+		month: month || cal.getMonth(o.date),
+		day: day || cal.getDayOfMonth(o.date),
+		hour: hour || o.date.getHours(),
+		minute: min || o.date.getMinutes(),
+		second: sec || o.date.getSeconds(),
+		cal: type
 	}
-    o.datetime = o.vars.cal.toDateTime(o.vars.year, o.vars.month, o.vars.day, o.vars.hour, o.vars.minute, o.vars.second, 0);
+    o.datetime = cal.toDateTime(o.vars.year, o.vars.month, o.vars.day, o.vars.hour, o.vars.minute, o.vars.second, 0);
     o.f = ['y{4}', 'y{3}', 'y{2}', 'M{4}', 'M{3}', 'M{2}', 'M{1}', 'd{4}', 'd{2}', 'd{1}', 'H{2}', 'H{1}', 'h{2}', 'h{1}', 'm{2}', 'm{1}', 's{2}', 's{1}', 'g{2}'];
 	return o;
 };
