@@ -33,7 +33,7 @@ var RenderObject = function(){
 			var nWeeks = Math.ceil(totalDays / nDays);
 			
 			var pDay = 1;
-			h += "<p>Today: " + d.toString() + "</p>";
+			h += "<p>" + d.toString() + "</p>";
 			h += "<table>";
 			for (var week=0; week<nWeeks; week++) {
 				h += "<tr>";
