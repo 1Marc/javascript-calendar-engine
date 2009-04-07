@@ -24,10 +24,17 @@ var RenderObject = function(){
 		},
 		draw: function(){
 			// testing stuff
-			var daysInMonth = this.date.calendar().getDaysInMonth(this.date.getFullYear(), this.date.getMonth());
-			var monthName = this.date.getMonthName();
-			var year = this.date.getFullYear();1
-			this.target.innerHTML = "<p>" + monthName + ", " + daysInMonth + ", " + year + "</p>";
+			var d = this.date;
+			var c = d.calendar();
+			
+			var daysInMonth = c.getDaysInMonth(d.getFullYear(), d.getMonth());
+			var dt = c.toDateTime(d.getFullYear(), d.getMonth(), 1);
+			console.log(dt);
+			var firstDay = c.getDayOfWeek(dt);
+			// for (var i=0;i++;i<daysInMonth) {
+			// 	
+			// }
+			this.target.innerHTML = "<p>" + daysInMonth + ", " + firstDay + "</p>";
 		}
 	};
 };

@@ -191,7 +191,7 @@ CalendarEngine.extendCalendar("Persian", // inherit defaults from Gregorion cale
 	    var returnMe = new Date();
 	    var num1 = this.getDaysInMonth(year, month);
 	    var num2 = this.GetAbsoluteDatePersian(year, month, day);
-	    var totalTicks = (num2 * 86400000) + this.TimeToTicks(hour, minute, second, millisecond);
+	    var totalTicks = (num2 * 86400000) + this.TimeToTicks(hour || 0, minute || 0, second || 0, millisecond || 0);
 	    var bTicks = new Date();
 	    bTicks.setFullYear(1, 0, 1);
 	    bTicks.setHours(0, 0, 0, 0);

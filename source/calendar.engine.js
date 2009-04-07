@@ -92,7 +92,7 @@ var CalendarObject = function(){
 		    dls: ["am", "pm"]
 		},
 		toDateTime: function(year, month, day, hour, min, sec, mili) {
-		    var date = new Date(year, (month - 1), day, hour, min, sec, mili);
+		    var date = new Date(year, (month - 1), day, (hour || 0), (min || 0), (sec || 0), (mili || 0));
 		    return date;
 		},
 		isLeapYear: function(year) {
