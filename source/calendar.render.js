@@ -24,7 +24,7 @@ var RenderObject = function(){
 		},
 		draw: function(){
 			// testing stuff
-			var daysInMonth = this.date.vars.cal.getDaysInMonth(this.date.getFullYear(), this.date.getMonth());
+			var daysInMonth = this.date.calendar().getDaysInMonth(this.date.getFullYear(), this.date.getMonth());
 			var monthName = this.date.getMonthName();
 			var year = this.date.getFullYear();1
 			this.target.innerHTML = "<p>" + monthName + ", " + daysInMonth + ", " + year + "</p>";
