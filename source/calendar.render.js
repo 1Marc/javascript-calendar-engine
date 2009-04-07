@@ -12,9 +12,8 @@ var RenderObject = function(){
 		date: new DateEngine(),
 		init: function(){
 			var self = this;
-			// testing adjustDate function
 			this.target.onclick = function(e){
-				self.date.adjustDate('M', +2);
+				self.date.adjustDate('M', +1);
 				self.refresh();
 			}
 			this.draw();
@@ -23,18 +22,32 @@ var RenderObject = function(){
 			this.draw();
 		},
 		draw: function(){
-			// testing stuff
 			var d = this.date;
 			var c = d.calendar();
+			var h = "";
 			
 			var daysInMonth = c.getDaysInMonth(d.getFullYear(), d.getMonth());
-			var dt = c.toDateTime(d.getFullYear(), d.getMonth(), 1);
-			console.log(dt);
-			var firstDay = c.getDayOfWeek(dt);
-			// for (var i=0;i++;i<daysInMonth) {
-			// 	
-			// }
-			this.target.innerHTML = "<p>" + daysInMonth + ", " + firstDay + "</p>";
+			var startDay = c.getDayOfWeek( c.toDateTime(d.getFullYear(), d.getMonth(), 1) )+1;
+			var totalDays = daysInMonth+startDay;
+			var nDays = c.strings.sdays.length;
+			var nWeeks = Math.ceil(totalDays / nDays);
+			
+			var pDay = 1;
+			h += "<p>Today: " + d.toString() + "</p>";
+			h += "<table>";
+			for (var week=0; week<nWeeks; week++) {
+				h += "<tr>";
+				for (var day=0;day<nDays;day++) {
+					if (pDay>startDay && pDay<=totalDays)
+						h += "<td>" + (pDay-startDay) + "</td>";
+					else 
+						h += "<td></td>"
+					pDay++;
+				}
+				h += "</tr>";
+			}
+			h += "</table>";
+			this.target.innerHTML = h;
 		}
 	};
 };

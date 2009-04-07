@@ -85,10 +85,10 @@ var CalendarObject = function(){
 		strings: {
 		    lmonth: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
 		    smonth: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-		    ldays: ["Sunday", "Monday", "Thuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-		    sdays: ["Sun", "Mon", "Thu", "Wed", "Thur", "Fri", "Sat"],
+		    ldays: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+		    sdays: ["Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat"],
 		    years: ["مار", "اسب", "گوسفند", "میمون", "مرغ", "سگ", "خوک", "موش", "گاو", "پلنگ", "خرگوش", "نهنگ"],
-		    dll: ["A.M", "P.M"],
+		    dll: ["A.M.", "P.M."],
 		    dls: ["am", "pm"]
 		},
 		toDateTime: function(year, month, day, hour, min, sec, mili) {
