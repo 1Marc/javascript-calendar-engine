@@ -10,7 +10,7 @@ CalendarEngine.extendCalendar("Persian", // inherit defaults from Gregorion cale
 	info: { "name":"Persian", "version":"1.0" },
 	strings: {
 	    lmonth: ["فروردین", "اردیبهشت", "خرداد", "تیر", "مرداد", "شهریور", "مهر", "آبان", "آذر", "دی", "بهمن", "اسفند"],
-	    smonth: ["حمل", "ثور", "جوزا", "سرطان", "اسد", "سنبله", "میران", "عقرب", "قوس", "جدی", "دلو", "حوت"],
+	    smonth: ["فروردین", "اردیبهشت", "خرداد", "تیر", "مرداد", "شهریور", "مهر", "آبان", "آذر", "دی", "بهمن", "اسفند"],
 	    ldays: ["یکشنبه", "دوشنبه", "سه شنبه", "چهارشنبه", "پنجشنبه", "جمعه", "شنبه"],
 	    sdays: ["ی", "د", "س", "چ", "پ", "ج", "ش"],
 	    years: ["مار", "اسب", "گوسفند", "میمون", "مرغ", "سگ", "خوک", "موش", "گاو", "پلنگ", "خرگوش", "نهنگ"],
@@ -142,6 +142,52 @@ CalendarEngine.extendCalendar("Persian", // inherit defaults from Gregorion cale
 	    return rValue;
 	},
 	toDateTime: function(year, month, day, hour, minute, second, millisecond) {
+		if((month > 12) || (month <= 0)){
+			if(month > 0){
+				while(month > 12){
+					month-=12;
+					year++;
+				};
+			}else if(month < 0){
+				while(month < 0){
+					month += 12;
+					year--;
+				};
+			}else{
+				month = 12;
+				year--;
+			};
+		};
+		if((day > this.getDaysInMonth(year, month)) || (day <= 0)){
+			if(day > 0){
+				while(day > this.getDaysInMonth(year, month)){
+					day -= this.getDaysInMonth(year, month);
+					if(month < 12){
+						month++;
+					}else{
+						month = 1;
+						year++;
+					};
+				};
+			}else if (day < 0){
+				while(day < 0){
+					day += this.getDaysInMonth(year, month);
+					if(month > 1){
+						month--;
+					}else{
+						month = 12;
+						year--;
+					};
+				};
+			}else{
+				month--;
+				if(month == 0){
+					year--;
+					month = 12;
+				}
+				day = this.getDaysInMonth(year, month);
+			};
+		};
 	    var returnMe = new Date();
 	    var num1 = this.getDaysInMonth(year, month);
 	    var num2 = this.GetAbsoluteDatePersian(year, month, day);
