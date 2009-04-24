@@ -2,11 +2,24 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>Calendar Engine Tests</title>
+	
+	<!-- qunit includes -->
 	<link rel="Stylesheet" media="screen" href="qunit/testsuite.css" />
 	<script type="text/javascript" src="qunit/testrunner.js"></script>
+	
+	<!-- data used in tests -->
+	<script src="data/dates.js" type="text/javascript" charset="utf-8"></script>
+	
+	<!-- unit tests -->
 	<script src="unit/core_unit.js" type="text/javascript" charset="utf-8"></script>
 	<script src="unit/date_unit.js" type="text/javascript" charset="utf-8"></script>
 	<script src="unit/render_unit.js" type="text/javascript" charset="utf-8"></script>
+	
+	<!-- script includes -->
+	<script src="../source/core.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../source/date.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../source/render.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../i18n/persian.js" type="text/javascript" charset="utf-8"></script>
 </head>
 <body>
 	<h1 id="header">Calendar Engine Tests</h1>
@@ -14,5 +27,6 @@
 	<h2 id="userAgent"><h2>
 	<ol id="tests"></ol>
 	<div id="main"></div>
+	<div id="calendar" style="display:none;"></div>
 </body>
 </html>

@@ -11,7 +11,7 @@
 /*---------------  Calendar Engine Date Object  -------------------------- */
 var DateObject = function(){
 	return {
-		date: new Date(),
+		datetime: new Date(),
 		vars: { year: 0, month: 0, day: 0, hour: 0, minute: 0, second: 0, cal: "default" },
 		setDate: function(date) {
 		    this.vars.year = this.calendar().getYear(date);
@@ -20,7 +20,7 @@ var DateObject = function(){
 		    this.vars.hour = date.getHours();
 		    this.vars.minute = date.getMinutes();
 		    this.vars.second = date.getSeconds();
-		    this.date = date;
+		    this.datetime = date;
 		},
 		getYear: function() { return this.vars.year; },
 		getMonth: function() { return this.vars.month; },
@@ -35,7 +35,7 @@ var DateObject = function(){
 		    iYear = iYear + "";
 		    return iYear.substring((iYear.length - 2), iYear.length);
 		},
-		getDay: function() { return this.calendar().getDayOfWeek(this.date); },
+		getDay: function() { return this.calendar().getDayOfWeek(this.datetime); },
 		getDayName: function(LongFormat) {
 		    var index = this.getDay();
 		    return (LongFormat) ? this.calendar().strings.ldays[index] : this.calendar().strings.sdays[index];
@@ -54,7 +54,7 @@ var DateObject = function(){
 		    return this.calendar().getTicks(this.getYear(), this.getMonth(), this.getDate(), this.getHours(), this.getMinutes(), this.getSeconds(), 0);
 		},
 		valueOf: function() { return this.getTime(); },
-		getDayOfYear: function() { return this.calendar().getDayOfYear(this.date); },
+		getDayOfYear: function() { return this.calendar().getDayOfYear(this.datetime); },
 		toString: function(format) {
 		    if (format) {
 		        var strValues = [
@@ -100,7 +100,7 @@ var DateObject = function(){
 		calendar: function() { return CalendarEngine.getCalendar(this.vars.cal); },
 		setCalendar: function(type) {
 			this.vars.cal = type;
-			this.setDate(this.date);
+			this.setDate(this.datetime);
 		},
 		twodigit: function(iNumber) {
 	        if (iNumber.toString().length < 2) {
@@ -143,16 +143,16 @@ var DateEngine = function(year, month, day, hour, min, sec, calendarType){ // da
 	var type = calendarType ? calendarType : "default";
 	var cal = CalendarEngine.getCalendar(type);
 	var o = new DateObject();
-	o.vars = {
-		year: year || cal.getYear(o.date),
-		month: month || cal.getMonth(o.date),
-		day: day || cal.getDayOfMonth(o.date),
-		hour: hour || o.date.getHours(),
-		minute: min || o.date.getMinutes(),
-		second: sec || o.date.getSeconds(),
-		cal: type
-	}
-    o.datetime = cal.toDateTime(o.vars.year, o.vars.month, o.vars.day, o.vars.hour, o.vars.minute, o.vars.second, 0);
+    datetime = cal.toDateTime(
+		year || cal.getYear(o.datetime), 
+		month || cal.getMonth(o.datetime), 
+		day || cal.getDayOfMonth(o.datetime), 
+		hour || o.datetime.getHours(), 
+		min || o.datetime.getMinutes(), 
+		sec || o.datetime.getSeconds(), 
+		0
+	);
+	o.setDate(datetime);
     o.f = ['y{4}', 'y{3}', 'y{2}', 'M{4}', 'M{3}', 'M{2}', 'M{1}', 'd{4}', 'd{2}', 'd{1}', 'H{2}', 'H{1}', 'h{2}', 'h{1}', 'm{2}', 'm{1}', 's{2}', 's{1}', 'g{2}'];
 	return o;
 };

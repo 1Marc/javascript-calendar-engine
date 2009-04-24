@@ -177,9 +177,10 @@ var CalendarObject = function(){
 };
 
 var CalendarEngine = function(){
+	var o = new CalendarObject();
 	var Calendars = {
-		default: new CalendarObject(),
-		Gregorion: this.default
+		default: o,
+		Gregorian: o
 	};
 	this.addCalendar = function(type, object){
 		Calendars[type] = object;
