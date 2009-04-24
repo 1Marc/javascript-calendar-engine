@@ -44,3 +44,5 @@ expectedDates.Gregorian = {
 		"December": { "firstDay": "Tuesday", "daysInMonth": 31 }
 	}
 }
+
+expectedDates.Persian = {}
