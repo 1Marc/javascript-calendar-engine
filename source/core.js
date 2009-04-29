@@ -8,7 +8,6 @@
 (function(){ // hide what's inside
 
 var fixGetTime = function(date) {
-	if (date == undefined) return null;
     var oldOffset = date.getTime();
     var firstYear = new Date();
     firstYear.setFullYear(1, 0, 1);

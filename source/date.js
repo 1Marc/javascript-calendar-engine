@@ -143,6 +143,7 @@ var DateEngine = function(year, month, day, hour, min, sec, calendarType){ // da
 	var type = calendarType ? calendarType : "default";
 	var cal = CalendarEngine.getCalendar(type);
 	var o = new DateObject();
+	if (calendarType) o.setCalendar(calendarType)
     datetime = cal.toDateTime(
 		year || cal.getYear(o.datetime), 
 		month || cal.getMonth(o.datetime), 

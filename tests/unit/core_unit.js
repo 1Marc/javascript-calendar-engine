@@ -23,7 +23,7 @@ test("Persian year/month tests", function() {
 			var monthName = months[i-1];
 			var tests = expectedDates.Persian[testYear][monthName];
 			
-			var d = new DateEngine(testYear, i, 1);
+			var d = new DateEngine(testYear, i, 1,null,null,null,'Persian');
 			ok(d.getDayName(true) === tests.firstDay, "pass: " + d.getMonthName(true) + ", " + testYear + " starts on " + tests.firstDay);
 			
 			var daysInMonth = d.calendar().getDaysInMonth(d.getFullYear(), d.getMonth());
